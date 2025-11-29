@@ -1,0 +1,100 @@
+/* Bins Display */
+.bins-display {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    perspective: 1000px;
+}
+
+.bin {
+    width: 60px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 8px 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+    opacity: 0.4;
+    transform: scale(0.9);
+}
+
+.bin-lid {
+    width: 70px;
+    height: 10px;
+    background: inherit;
+    position: absolute;
+    top: -10px;
+    border-radius: 5px 5px 0 0;
+    border: 2px solid transparent;
+    border-bottom: none;
+}
+
+.bin-body i {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.bin-label {
+    font-size: 0.7rem;
+    margin-top: 5px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Bin Colors */
+.bin-white { background: rgba(245, 246, 250, 0.1); border-color: rgba(245, 246, 250, 0.3); }
+.bin-white .bin-lid { background: rgba(245, 246, 250, 0.2); border-color: rgba(245, 246, 250, 0.3); }
+
+.bin-black { background: rgba(47, 54, 64, 0.3); border-color: rgba(47, 54, 64, 0.5); }
+.bin-black .bin-lid { background: rgba(47, 54, 64, 0.4); border-color: rgba(47, 54, 64, 0.5); }
+
+.bin-green { background: rgba(76, 209, 55, 0.1); border-color: rgba(76, 209, 55, 0.3); }
+.bin-green .bin-lid { background: rgba(76, 209, 55, 0.2); border-color: rgba(76, 209, 55, 0.3); }
+
+.bin-red { background: rgba(231, 76, 60, 0.1); border-color: rgba(231, 76, 60, 0.3); }
+.bin-red .bin-lid { background: rgba(231, 76, 60, 0.2); border-color: rgba(231, 76, 60, 0.3); }
+
+/* Active State */
+.bin.active {
+    opacity: 1;
+    transform: scale(1.2) translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+.bin.active .bin-label {
+    opacity: 1;
+}
+
+.bin-white.active { background: rgba(245, 246, 250, 0.2); box-shadow: 0 0 20px rgba(245, 246, 250, 0.4); }
+.bin-white.active i { color: #fff; }
+
+.bin-black.active { background: rgba(47, 54, 64, 0.8); box-shadow: 0 0 20px rgba(0,0,0, 0.5); }
+.bin-black.active i { color: #bdc3c7; }
+
+.bin-green.active { background: rgba(76, 209, 55, 0.2); box-shadow: 0 0 20px rgba(76, 209, 55, 0.4); }
+.bin-green.active i { color: #4cd137; }
+
+.bin-red.active { background: rgba(231, 76, 60, 0.2); box-shadow: 0 0 20px rgba(231, 76, 60, 0.4); }
+.bin-red.active i { color: #e74c3c; }
+
+/* Flying Trash Animation */
+.flying-trash {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}

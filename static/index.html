@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSort AI - Clasificador Inteligente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/bins.css">
+    <link rel="stylesheet" href="/static/maps.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-leaf"></i> EcoSort AI
+            </div>
+            <p class="subtitle">Clasificación inteligente de residuos universitarios</p>
+        </header>
+
+        <div class="app-card">
+            <div class="upload-section" id="drop-zone">
+                <div class="preview-container" id="preview-container">
+                    <img id="image-preview" src="" alt="Vista previa" class="hidden">
+                    <div class="placeholder" id="placeholder">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <p>Arrastra una imagen o usa la cámara</p>
+                    </div>
+                    <video id="camera-feed" autoplay playsinline class="hidden"></video>
+                </div>
+
+                <div class="controls">
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                    <button class="btn btn-secondary" id="upload-btn">
+                        <i class="fa-solid fa-image"></i> Subir Foto
+                    </button>
+                    <button class="btn btn-primary" id="camera-btn">
+                        <i class="fa-solid fa-camera"></i> Usar Cámara
+                    </button>
+                    <button class="btn btn-danger hidden" id="capture-btn">
+                        <i class="fa-solid fa-circle-dot"></i> Capturar
+                    </button>
+                </div>
+            </div>
+
+            <div class="result-section hidden" id="result-section">
+                <div class="loader hidden" id="loader">
+                    <div class="spinner"></div>
+                    <p>Analizando residuo...</p>
+                </div>
+
+                <div class="result-content hidden" id="result-content">
+                    <h2 id="waste-type-title">--</h2>
+                    <p class="waste-object" id="waste-object">Objeto: --</p>
+
+                    <div class="bins-display">
+                        <div class="bin bin-white" id="bin-white">
+                            <div class="bin-lid"></div>
+                            <div class="bin-body"><i class="fa-solid fa-recycle"></i></div>
+                            <span class="bin-label">Blanco</span>
+                        </div>
+                        <div class="bin bin-black" id="bin-black">
+                            <div class="bin-lid"></div>
+                            <div class="bin-body"><i class="fa-solid fa-ban"></i></div>
+                            <span class="bin-label">Negro</span>
+                        </div>
+                        <div class="bin bin-green" id="bin-green">
+                            <div class="bin-lid"></div>
+                            <div class="bin-body"><i class="fa-solid fa-apple-whole"></i></div>
+                            <span class="bin-label">Verde</span>
+                        </div>
+                        <div class="bin bin-red" id="bin-red">
+                            <div class="bin-lid"></div>
+                            <div class="bin-body"><i class="fa-solid fa-biohazard"></i></div>
+                            <span class="bin-label">Rojo</span>
+                        </div>
+                    </div>
+
+                    <div id="flying-trash" class="flying-trash hidden"></div>
+
+                    <p class="waste-instruction" id="waste-instruction">--</p>
+
+                    <div class="confidence-meter">
+                        <span>Confianza IA:</span>
+                        <div class="meter-bar">
+                            <div class="meter-fill" id="confidence-fill" style="width: 0%"></div>
+                        </div>
+                        <span id="confidence-text">0%</span>
+                    </div>
+
+                    <button class="btn btn-map" id="show-map-btn">
+                        <i class="fa-solid fa-map-location-dot"></i> Ver contenedores cercanos
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-modal hidden" id="map-modal">
+            <div class="map-modal-content">
+                <button class="map-close-btn" id="close-map-btn">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+                <h3><i class="fa-solid fa-location-dot"></i> Contenedores cercanos en Medellín</h3>
+                <div id="map" style="width: 100%; height: 400px; border-radius: 12px; margin: 15px 0;"></div>
+                <div id="containers-list" class="containers-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/script.js"></script>
+    <script src="/static/maps.js"></script>
+</body>
+
+</html>
